@@ -1,7 +1,6 @@
 version: '3.3'
 
 services:
-
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.4.1
     ports:
@@ -28,7 +27,7 @@ services:
       - source: logstash_config
         target: /usr/share/logstash/config/logstash.yml
       - source: logstash_pipeline
-        target: /usr/share/logstash/pipeline/logstash.conf
+        target: /usr/share/logstash/pipelines/my_logstash_pipeline.conf
     environment:
       LS_JAVA_OPTS: "-Xmx256m -Xms256m"
     networks:
@@ -57,7 +56,7 @@ configs:
   logstash_config:
     file: ./logstash/config/logstash.yml
   logstash_pipeline:
-    file: ./logstash/pipeline/logstash.conf
+    file: ./logstash/pipelines/my_logstash_pipeline.conf
   kibana_config:
     file: ./kibana/config/kibana.yml
 
